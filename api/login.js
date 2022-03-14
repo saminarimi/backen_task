@@ -8,7 +8,7 @@ loginRoute.post('/', async (req,res)=>{
         if(!validUser) return res.status(400).send("User email doesn't exist")
         const validPassword = await bcrypt.compare(req.body.password,validUser.password)
         if(!validPassword) return res.status(400).send("Please enter the correct password")
-        return res.send(201).json({validUser})
+        return res.status(200).json(validUser)
     }
     catch(err){
         return res.status(400).send("error: "+ err)
